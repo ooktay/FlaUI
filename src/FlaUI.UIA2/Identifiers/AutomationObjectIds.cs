@@ -83,7 +83,7 @@ namespace FlaUI.UIA2.Identifiers
     }
 #endif
 
-#if NET471
+#if NET472
     /// <summary>
     /// Additions from .NET 4.7.1.
     /// </summary>

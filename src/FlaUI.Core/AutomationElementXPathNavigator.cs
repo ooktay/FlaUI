@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.XPath;
 using FlaUI.Core.AutomationElements;
@@ -18,6 +19,7 @@ namespace FlaUI.Core
         private readonly AutomationElement _rootElement;
         private readonly ITreeWalker _treeWalker;
         private AutomationElement _currentElement;
+        private Stack<AutomationElement> _currentPath;
         private int _attributeIndex = NoAttributeValue;
 
         public AutomationElementXPathNavigator(AutomationElement rootElement)
@@ -25,6 +27,7 @@ namespace FlaUI.Core
             _treeWalker = rootElement.Automation.TreeWalkerFactory.GetControlViewWalker();
             _rootElement = rootElement;
             _currentElement = rootElement;
+            _currentPath = new Stack<AutomationElement>();
         }
 
         private bool IsInAttribute => _attributeIndex != NoAttributeValue;
@@ -82,7 +85,8 @@ namespace FlaUI.Core
             var clonedObject = new AutomationElementXPathNavigator(_rootElement)
             {
                 _currentElement = _currentElement,
-                _attributeIndex = _attributeIndex
+                _attributeIndex = _attributeIndex,
+                _currentPath = new Stack<AutomationElement>(_currentPath)
             };
             return clonedObject;
         }
@@ -156,6 +160,7 @@ namespace FlaUI.Core
         {
             _attributeIndex = NoAttributeValue;
             _currentElement = _rootElement;
+            _currentPath.Clear();
         }
 
         /// <inheritdoc />
@@ -193,6 +198,7 @@ namespace FlaUI.Core
             {
                 return false;
             }
+            _currentPath.Push(_currentElement);
             _currentElement = childElement;
             return true;
         }
@@ -209,7 +215,8 @@ namespace FlaUI.Core
             {
                 return false;
             }
-            _currentElement = _treeWalker.GetParent(_currentElement);
+            _currentElement = _currentPath.Pop();
+            //_currentElement = _treeWalker.GetParent(_currentElement);
             return true;
         }
 
@@ -227,6 +234,7 @@ namespace FlaUI.Core
             }
             _currentElement = specificNavigator._currentElement;
             _attributeIndex = specificNavigator._attributeIndex;
+            _currentPath = specificNavigator._currentPath;
             return true;
         }
 

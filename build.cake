@@ -35,9 +35,17 @@ Task("Build")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
+    #tool nuget:?package=vswhere
+
+    DirectoryPath vsLatest  = VSWhereLatest();
+    FilePath msBuildPathX64 = (vsLatest==null)
+                                ? null
+                                : vsLatest.CombineWithFilePath("./MSBuild/15.0/Bin/amd64/MSBuild.exe");
+
     var buildLogFile = artifactDir.CombineWithFilePath("BuildLog.txt");
     var buildSettings = new MSBuildSettings {
         Verbosity = Verbosity.Minimal,
+        ToolPath = msBuildPathX64,
         ToolVersion = MSBuildToolVersion.VS2017,
         Configuration = configuration,
         PlatformTarget = PlatformTarget.MSIL,

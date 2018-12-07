@@ -28,7 +28,7 @@ namespace FlaUI.UIA2
     /// </summary>
     public partial class UIA2AutomationElementEventIds
     {
-#if NET471
+#if NET472
         public EventId LiveRegionChangedEvent => AutomationObjectIds.LiveRegionChangedEvent;
 #else
         public EventId LiveRegionChangedEvent => EventId.NotSupportedByFramework;

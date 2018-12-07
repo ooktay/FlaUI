@@ -66,7 +66,7 @@ namespace FlaUI.UIA2
     /// </summary>
     public partial class UIA2AutomationElementPropertyIds
     {
-#if NET471
+#if NET472
         public PropertyId LiveSetting => AutomationObjectIds.LiveSettingProperty;
 #else
         public PropertyId LiveSetting => PropertyId.NotSupportedByFramework;
