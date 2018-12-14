@@ -234,7 +234,7 @@ namespace FlaUI.Core
             }
             _currentElement = specificNavigator._currentElement;
             _attributeIndex = specificNavigator._attributeIndex;
-            _currentPath = specificNavigator._currentPath;
+            _currentPath = new Stack<AutomationElement>(specificNavigator._currentPath);
             return true;
         }
 
