@@ -1,7 +1,7 @@
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"
+call "C:\VS2017\Community\Common7\Tools\VsDevCmd.bat"
 set VS=%VS150COMNTOOLS%
 set WINSDK=C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\um\
-set ASMVERSION=4.7.2
+set ASMVERSION=4.6.1
 SET TEMP=tmp
 
 mkdir %TEMP%
@@ -10,7 +10,7 @@ mkdir %TEMP%
 midl.exe /nologo /out %TEMP% /char signed /tlb UIAutomationClient.tlb /h UIAutomationClient_h.h "%WINSDK%UIAutomationClient.idl"
 midl.exe /nologo /out %TEMP% /char signed /tlb UIAutomationCore.tlb /h UIAutomationCore_h.h "%WINSDK%UIAutomationCore.idl"
 @REM http://stackoverflow.com/questions/5615206/windows-batch-files-setting-variable-in-for-loop
-FOR %%A IN (3.5 4.5) DO (
+FOR %%A IN (3.5 4.5 4.6.1) DO (
 	mkdir %TEMP%\%%A
 	mkdir %TEMP%\Signed\%%A
 

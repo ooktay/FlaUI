@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net40;net45;net472</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;net461</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\artifacts</PackageOutputPath>
-    <Version>2.0.0-rc3</Version>
+    <Version>2.0.0-rc6</Version>
     <Company>FlauTech</Company>
     <Product>FlaUI</Product>
     <Authors>Roemer</Authors>

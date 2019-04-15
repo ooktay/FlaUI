@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Build">
-    <TargetFrameworks>net35;net40;net45</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;net461</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Label="Package">
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\artifacts</PackageOutputPath>
-    <Version>2.0.0-rc3</Version>
+    <Version>2.0.0-rc6</Version>
     <Company>FlauTech</Company>
     <Product>FlaUI</Product>
     <Authors>Roemer</Authors>
@@ -52,6 +52,11 @@
       <EmbedInteropTypes>false</EmbedInteropTypes>
       <SpecificVersion>false</SpecificVersion>
     </Reference>
+    <Reference Include="Interop.UIAutomationClient" Condition="'$(TargetFramework)'=='net461'">
+      <HintPath>$(InteropHintPath)\4.6.1\Interop.UIAutomationClient.dll</HintPath>
+      <EmbedInteropTypes>false</EmbedInteropTypes>
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup Label="References">
@@ -67,6 +72,7 @@
 
   <PropertyGroup>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetInteropFile</TargetsForTfmSpecificBuildOutput>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <Target Name="GetInteropFile">

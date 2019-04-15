@@ -39,7 +39,7 @@ Task("Build")
 
     DirectoryPath vsLatest  = VSWhereLatest();
     FilePath msBuildPathX64 = (vsLatest==null)
-                                ? null
+                                ? new FilePath(@"C:\VS2017\Community\MSBuild\15.0\Bin\MSBuild.exe")
                                 : vsLatest.CombineWithFilePath("./MSBuild/15.0/Bin/amd64/MSBuild.exe");
 
     var buildLogFile = artifactDir.CombineWithFilePath("BuildLog.txt");
